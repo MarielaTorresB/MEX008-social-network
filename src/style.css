@@ -1,0 +1,119 @@
+/* BOX-SIZING */
+/*valign-wrapper*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    user-select: none;
+}
+
+html {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    color: #343a40;
+}
+
+.container {
+    width: 91%;
+}
+
+/* GLOBALES */
+body {
+    width: 100vw;
+    /* overflow-x:hidden;*/
+    background-color: #FFF;
+}
+
+#sidebar {
+    height: 4rem;
+    /*    top: 0;*/
+    padding-bottom: 3vh;
+    margin: 0 auto;
+}
+.sidenav{
+    width: 75vw;
+}
+.name, .email{
+    font-family: 'Montserrat', sans-serif;
+}
+.sidenav .user-view .name {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.sidenav .user-view .email {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.background{
+    background-color: #73ECEF;
+}
+h1 {
+    color: #73ECEF;
+    margin: 1.8rem 0 1.68rem 0;
+}
+
+h5 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: auto 7%;
+}
+/* .hidden{
+    display: none;
+} */
+
+/* SECCIONES */
+
+main section {
+    height: 90vh;
+    border: 1px solid black;
+}
+
+#intro {
+    height: 100vh;
+    background-image: url("img/fondo-mobile.png");
+    background-size: cover;
+}
+
+#login {
+    margin-top: 3rem;
+}
+
+#firebaseui-auth-container {
+    margin-top: 1.8rem;
+}
+
+/* BOTONES */
+.firebaseui-idp-button {
+    border-radius: 1rem;
+}
+nav{
+    background-color: #73eeaf;
+}
+
+/* IMÁGENES */
+
+figure {
+    margin: 0;
+}
+
+.logo-intro img {
+    margin-top: 37vh;
+    width: 9.8rem;
+}
+
+.logo img {
+    width: 8rem;
+}
+
+
+
+
+
+
+@media only screen and (min-width: 760px) {
+    #intro {
+        background-image: url("img/fondo-desktop.png");
+    }
+}
