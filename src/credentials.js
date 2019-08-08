@@ -28,6 +28,8 @@
        // The widget is rendered.
        // Hide the loader.
        document.getElementById('loader').style.display = 'none';
+       document.getElementById('firebaseui-auth-container').style.display = 'none';
+
      }
    },
    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
@@ -84,6 +86,8 @@
      // ...
      // location.assign = '/src/'
      console.log('no hay usuario')
+     document.getElementById('firebaseui-auth-container').style.display = 'none';
+
    }
  });
 

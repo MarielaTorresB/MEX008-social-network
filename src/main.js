@@ -19,3 +19,18 @@ myFunction();
 //   $(document).ready(function(){
 //     $('.sidenav').sidenav();
 //   });
+
+
+const signOutButton= document.getElementById("signOutButton");
+
+let signOut = async() => {
+    try{
+        firebase.auth().signOut().then;
+    }
+    catch(err){
+        console.error("Error!!")
+    }
+    console.log("Saliste!!")
+}
+
+signOutButton.addEventListener("click",signOut)
