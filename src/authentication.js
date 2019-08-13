@@ -1,3 +1,5 @@
+ 
+ 
  // Your web app's Firebase configuration
  var firebaseConfig = {
    apiKey: "AIzaSyBxJs9j1qM3ULWLVgJ_LqeNZGkGegHOh8o",
@@ -27,14 +29,13 @@
      uiShown: function () {
        // The widget is rendered.
        // Hide the loader.
-       document.getElementById('loader').style.display = 'none';
-       document.getElementById('firebaseui-auth-container').style.display = 'none';
-
+       document.getElementById('loader').classList.add("hide");
+       //document.getElementById('firebaseui-auth-container').classList.add("hide");
      }
    },
-   // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+   // Will use popup for IDP Providers sign-in flow instead of the default, redirect. ./#timeline
    signInFlow: 'popup',
-   signInSuccessUrl: './#timeline',
+   signInSuccessUrl: './#/profile',
    signInOptions: [
      // Leave the lines as is for the providers you want to offer your users.
      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -68,9 +69,38 @@
    // Other config options...
  });
 
-
+const signOut = async() => {
+     try{
+      firebase.auth().signOut().then;
+   }
+   catch(err){
+       console.error("¡Error al tratar de cerrar sesión!")
+   }
+   console.log("Se cerró sesión")
+};
+/* FUncion para agregar boton
+   const signOutBtn = async() => {
+     if(document.getElementById("sign-out")!=null) {
+      try{
+        document.getElementById("sign-out").addEventListener("click", () => signOut()).then;
+    }
+    catch(err){
+        console.error("¡No se encuentra 'sign-out'!")
+    }
+    console.log("Se encontró 'sign-out'");
+  }
+};
+*/
+//funcion para comprobar estado de usuario
  firebase.auth().onAuthStateChanged(function (user) {
    if (user) {
+    document.getElementById('signup-signin').classList.add("hide");
+    document.getElementById('intro-container').classList.add("hide");
+    document.getElementById('section-container').classList.remove("hide");
+    document.getElementById('pic-trigger').classList.remove("hide");
+    document.getElementById('slide-out').classList.remove("hide");
+    document.getElementById('footer-nav').classList.remove("hide");
+    document.getElementById("sign-out").addEventListener("click", () => signOut());
      console.log(user)
      // User is signed in.
      var displayName = user.displayName;
@@ -81,16 +111,22 @@
      var uid = user.uid;
      var providerData = user.providerData;
      // ...
+     //document.getElementById('loader').classList.add("hide");
    } else {
      // User is signed out.
      // ...
      // location.assign = '/src/'
-     console.log('no hay usuario')
-     document.getElementById('firebaseui-auth-container').style.display = 'none';
-
+     document.getElementById('signup-signin').classList.remove("hide");
+     document.getElementById('slide-out').classList.add("hide");
+     document.getElementById('pic-trigger').classList.add("hide");
+     document.getElementById('footer-nav').classList.add("hide");
+     document.getElementById('section-container').classList.add("hide");
+     console.log('No hay usuario')
    }
  });
 
+
+// export default signOut;
 
  //   db.collection("users").add({
  //     first: "Ada",
