@@ -11,13 +11,24 @@ const timeline = {
 
     return `
 <section>
+      <table>
+        <thead>
+          <tr>
+            <th>Timeline</th>
+          </tr>
+        </thead>
+
+        <tbody id="tabla">
+          
+        </tbody>
+      </table>
     <!-- Modal More Trigger-->
     <div id="more-btn" class="right-align">
       <a class="waves-effect waves-light btn modal-trigger" href="#modal-more"><i
           class="material-icons">more_vert</i></a>
     </div>
     <!-- Modal More Structure-->
-    <div id="modal-more" class="modal bottom-sheet">
+    <div id="modal-more" class="modal bottom-sheet" data-id="${doc.id}">
       <div class="modal-content">
         <h3 class="header">Opciones</h3>
         <ul class="collection">
@@ -29,7 +40,7 @@ const timeline = {
               <i class="material-icons">edit</i>
             </a>
           </li>
-          <li class="collection-item avatar">
+          <li class="collection-item avatar" id="buttonDelete">
             <i class="material-icons circle red">delete</i>
             <span class="title">Eliminar</span>
             <p>Eliminar</p>
@@ -57,7 +68,64 @@ const timeline = {
     </section>
         `;
                    },
-  after_render: () => {},
+  after_render: () => {
+    let tabla=document.getElementById("tabla");
+    tabla.innerHTML = "";
+    db.collection("posts").onSnapshot((querySnapshot) => {
+     querySnapshot.forEach((doc) => {
+     console.log(`${doc.data().displayName} => ${doc.data().textPost}`);
+     tabla.innerHTML += `
+     <div class="col s12 m7">
+     <h2 class="header">${doc.data().displayName}</h2>
+     <div class="card horizontal">
+     <div id="more-btn" class="right-align">
+     <a class="waves-effect waves-light btn modal-trigger" href="#modal-more"><i
+         class="material-icons">more_vert</i></a>
+      </div>
+       <div class="card-stacked">
+         <div class="card-content">
+           <p>${doc.data().textPost}</p>
+           <p>${doc.data().date}</p>
+         </div>
+         <div class="card-action">
+           <a href="#">Delete</a>
+
+           <!-- Switch -->
+           <div class="switch">
+           <p>
+           <label>
+             <input id="indeterminate-checkbox" type="checkbox" />
+             <span><i class="material-icons like" >favorite</i></span>
+           </label>
+         </p>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+             
+     `
+
+     });
+   }); 
+
+let buttonDelete= document.getElementById("buttonDelete");
+
+
+let deletePost=(id)=>{
+
+  console.log(id);
+  db.collection("posts").doc(id).delete().then(function() {
+    console.log("Document successfully deleted!");
+}).catch(function(error) {
+    console.error("Error removing document: ", error);
+});
+}
+
+
+buttonDelete.addEventListener("click", deletePost);
+  },
                   };
 
 export default timeline;
+

@@ -53,6 +53,7 @@ import Utils from "./services/Utils.js";
   
     let page = routes[parsedURL] ? routes[parsedURL] : error404;
     sectionContainer.innerHTML = await page.render();
+    await page.after_render();
     
     //Inicializando sidebar y modales
     const btnCollapse = document.querySelectorAll(".sidenav");
@@ -120,3 +121,7 @@ import Utils from "./services/Utils.js";
       setTimeout(() => { 
         document.getElementById('intro-container').classList.add("hide");
      }, 1700);
+
+     
+   
+  
