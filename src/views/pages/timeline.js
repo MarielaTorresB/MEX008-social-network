@@ -128,7 +128,7 @@ const timeline = {
       <div class="card horizontal" style="overflow: visible;" data-uid="${post.data().uid}" data-id="${post.id}">
 
           <div class="card-image waves-effect waves-block waves-light">
-              <img src="${post.data().photo}">
+              <img src="${post.data().photo}" alt="user-pic">
           </div>
 
           <div class="card-content">
